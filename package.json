@@ -1,0 +1,11 @@
+{
+  "name": "graphqlbackend",
+  "version": "1.0.0",
+  "description": "API GraphQL para el desarrollo del trabajo de grado: \"GraphQL vs. REST\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Asher Kleiman & Reynaldo Quintero",
+  "license": "ISC"
+}
