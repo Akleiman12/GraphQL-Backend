@@ -1,4 +1,4 @@
-export default `
+export const sch = `
     type Query{
         user(id: String): User,
         users: [User]
