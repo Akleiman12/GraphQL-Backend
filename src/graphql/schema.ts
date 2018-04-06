@@ -48,11 +48,11 @@ export const sch = `
         death_place: String 
         age: Int
         books: [String]
-        genre: [String]
+        genres: [String]
     }
 
     type Book {
-        id: String
+        _id: String
         title: String
         edition: String
         year: String 
@@ -61,7 +61,6 @@ export const sch = `
     }
 
     input BookInput {
-        id: String
         title: String
         edition: String
         year: String 
@@ -70,14 +69,13 @@ export const sch = `
     }
 
     type Genre {
-        id: String
+        _id: String
         title: String
         authors: [Author]
         books: [Book]
     }
 
     input GenreInput {
-        id: String
         title: String
         authors: [String]
         books: [String]

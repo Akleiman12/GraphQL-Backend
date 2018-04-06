@@ -55,7 +55,7 @@ export const resolverMap = {
             const repo = new AuthorRepo(db);
             return await repo.update(args.id, args.input);
         },
-        async deleteAuthor(obj, args, context, info): Promise<Author>{
+        async removeAuthor(obj, args, context, info): Promise<Author>{
             const repo = new AuthorRepo(db);
             return await repo.create(args.id);
         },
@@ -70,7 +70,7 @@ export const resolverMap = {
             const repo = new BookRepo(db);
             return await repo.update(args.id, args.input);
         },
-        async deleteBook(obj, args, context, info): Promise<Book>{
+        async removeBook(obj, args, context, info): Promise<Book>{
             const repo = new BookRepo(db);
             return await repo.create(args.id);
         },
@@ -85,11 +85,41 @@ export const resolverMap = {
             const repo = new GenreRepo(db);
             return await repo.update(args.id, args.input);
         },
-        async deleteGenre(obj, args, context, info): Promise<Genre>{
+        async removeGenre(obj, args, context, info): Promise<Genre>{
             const repo = new GenreRepo(db);
             return await repo.create(args.id);
         },
         /////////////////////
     },
+    Author: {
+        async books(obj, args, context, info): Promise<Book[]>{
+            const repo = new BookRepo(db);
+            return await repo.getArray(obj.books)
+        },
+        async genres(obj, args, context, info): Promise<Genre[]>{
+            const repo = new GenreRepo(db);
+            return await repo.getArray(obj.genres)
+        },
+    },
+    Book: {
+        async authors(obj, args, context, info): Promise<Author[]>{
+            const repo = new AuthorRepo(db);
+            return await repo.getArray(obj.authors)
+        },
+        async genres(obj, args, context, info): Promise<Genre[]>{
+            const repo = new GenreRepo(db);
+            return await repo.getArray(obj.genres)
+        }
+    },
+    Genre: {
+        async authors(obj, args, context, info): Promise<Author[]>{
+            const repo = new AuthorRepo(db);
+            return await repo.getArray(obj.authors)
+        },
+        async books(obj, args, context, info): Promise<Book[]>{
+            const repo = new BookRepo(db);
+            return await repo.getArray(obj.books)
+        },
+    }
 
 }

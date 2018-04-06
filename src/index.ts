@@ -29,5 +29,5 @@ app.listen(port, (err) => {
     return console.log(err)
   }
 
-  return console.log(`server is runing on http://localhost:${port}`)
+  return console.log(`server is running on http://localhost:${port}`)
 })

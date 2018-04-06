@@ -1,4 +1,4 @@
-import { AuthorRelated } from './authorRelated.model'
+
 export interface Author {
     _id?: string,
     given_name?: string,
@@ -9,5 +9,6 @@ export interface Author {
     death_date?: string,
     death_place?: string, 
     age?: number,
-    links?: AuthorRelated
+    books?: string[],
+    genres?: string[]
 }
