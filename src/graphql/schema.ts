@@ -24,7 +24,7 @@ export const sch = `
         removeGenre(id: String): Genre
     }
 
-    type Author{
+    type Author @cacheControl(maxAge: 300){
         _id: String
         given_name: String
         middle_name: String
@@ -51,7 +51,7 @@ export const sch = `
         genres: [String]
     }
 
-    type Book {
+    type Book @cacheControl(maxAge: 300){
         _id: String
         title: String
         edition: String
@@ -68,7 +68,7 @@ export const sch = `
         genres: [String]
     }
 
-    type Genre {
+    type Genre @cacheControl(maxAge: 300) {
         _id: String
         title: String
         authors: [Author]

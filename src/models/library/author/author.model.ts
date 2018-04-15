@@ -1,4 +1,4 @@
-
+//Modelo de Autores
 export interface Author {
     _id?: string,
     given_name?: string,

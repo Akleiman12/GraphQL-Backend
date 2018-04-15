@@ -5,6 +5,8 @@ import {
 } from '../models/library';
 import { Collection, MongoClient, Db } from 'mongodb';
 
+
+//Aqui se construlle la conexion a la BDD (en este caso MongoDB) para ser declara al iniciar la app
 export class Database {
 
     mongo: Db

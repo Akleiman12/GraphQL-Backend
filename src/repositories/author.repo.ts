@@ -25,6 +25,7 @@ export class AuthorRepo {
 
     //Metodo para obtener todos los Authors
     public async getAll(): Promise <Author[] | null>{
+        console.log('Entered Repo')
         return this.db.Authors.find().toArray();
     }
 
