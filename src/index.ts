@@ -1,8 +1,7 @@
 import app from './App'
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
-import { ApolloEngine } from 'apollo-engine'
-import * as bodyParser from 'body-parser' 
+import { makeExecutableSchema } from 'graphql-tools'
+import * as graphqlHTTP from 'express-graphql'
+import * as bodyParser from 'body-parser'
 
 import { sch } from './graphql/schema'
 import { resolverMap } from './graphql/resolvers'
@@ -23,29 +22,20 @@ let schema = makeExecutableSchema({
 //Las opciones declaradas son:
       //schema: objeto que contiene el schema y resolvers para graphQL
       //context: objeto de contexto para las funciones, en este caso no es necesario y se deja vacio
-      //tracing: Permite visualizar informacion extra en los queries
-      //cacheControl: Permite utilizacion de cache
-app.use('/graphql', bodyParser.json(), graphqlExpress({
+      //graphiql: booleano que indica si el servidor utilizara graphiql, lo cual es una herramienta 
+      //          para el uso de la API que permite construir queries de forma sencilla, verificando 
+      //          que sean correctos y viendo que retornan los mismos
+app.use('/graphql', bodyParser.json(), graphqlHTTP({
   schema,
   context: {},
-  tracing: true,
-  cacheControl: true
+  graphiql: true
 }));
 
-//Enrutamiento a GraphiQL para utilizacion de GUI para realizacion de queries
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql'
-})
-)
 
-//Declaracion del Engine de Apollo para GraphQL, necesario para implementar cache.
-//La api utilizada permite visualizar informacion extra en la GUI de Apollo Engine
-const engine = new ApolloEngine({
-  apiKey: 'service:Akleiman12-2251:a1DVlA9pySoyjfMVA7fRjg'
-});
+
 
 //Se inicia la aplicacion (a traves del Engine) en local con el puerto indicado
-engine.listen({
-  port: port,
-  expressApp: app,
-});
+app.listen(port)
+
+console.log("listening on port: "+port)
+
